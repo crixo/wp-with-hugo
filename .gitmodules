@@ -1,0 +1,9 @@
+[submodule "themes/kross-hugo-portfolio-template"]
+	path = themes/kross-hugo-portfolio-template
+	url = https://github.com/themefisher/kross-hugo-portfolio-template.git
+[submodule "themes/ananke"]
+	path = themes/ananke
+	url = https://github.com/budparr/gohugo-theme-ananke.git
+[submodule "themes/hugo-coder"]
+	path = themes/hugo-coder
+	url = https://github.com/luizdepra/hugo-coder.git
