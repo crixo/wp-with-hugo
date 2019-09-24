@@ -20,5 +20,5 @@ REMOTEPATH='/web/public/'
 # mirror --continue --reverse --delete --verbose $LOCALPATH $REMOTEPATH
 # bye
 # "
-lftp -e "set ftp:ssl-allow no; mirror -v -R ./public/ web/" -u $FTP_USER,$FTP_PASSWORD ftp://ftp.webprofessor.it
+lftp -e "set ftp:ssl-allow no; set net:max-retries 3; set net:persist-retries 3; mirror -v -R ./public/ web/" -u $FTP_USER,$FTP_PASSWORD ftp://ftp.webprofessor.it
 
