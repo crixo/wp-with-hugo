@@ -14,7 +14,6 @@ REMOTEPATH='/web/public/'
 # set ftp:ssl-allow no
 
 lftp -f "
-set ssl:verify-certificate no;
 open ftp://ftp.webprofessor.it
 user $FTP_USER $FTP_PASSWORD
 mirror --continue --reverse --delete --verbose $LOCALPATH $REMOTEPATH
