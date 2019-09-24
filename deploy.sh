@@ -7,18 +7,20 @@ set -e
 
 sudo apt-get install -y lftp
 
-LOCALPATH='./public'
-REMOTEPATH='/web/public/'
+LOCALPATH='./public/'
+REMOTEPATH='web/'
 
 # set ssl:verify-certificate no
 # set ftp:ssl-allow no
 
-# lftp -f "
-# open ftp://ftp.webprofessor.it
-# user $FTP_USER $FTP_PASSWORD
-# set ftp:ssl-allow no
-# mirror --continue --reverse --delete --verbose $LOCALPATH $REMOTEPATH
-# bye
-# "
-lftp -e "set ftp:ssl-allow no; set net:max-retries 3; set net:persist-retries 3; mirror -v -R ./public/ web/" -u $FTP_USER,$FTP_PASSWORD ftp://ftp.webprofessor.it
+lftp -f "
+set ftp:ssl-allow no
+set net:max-retries 3
+set ftp:ssl-allow no
+open ftp://ftp.webprofessor.it
+user $FTP_USER $FTP_PASSWORD
+mirror --continue --reverse --delete --verbose $LOCALPATH $REMOTEPATH
+bye
+"
+#lftp -e "set ftp:ssl-allow no; set net:max-retries 3; set net:persist-retries 3; mirror -v -R ./public/ web/" -u $FTP_USER,$FTP_PASSWORD ftp://ftp.webprofessor.it
 
