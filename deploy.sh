@@ -8,7 +8,7 @@ set -e
 sudo apt-get install -y lftp
 
 LOCALPATH='./public'
-REMOTEPATH='/web/public'
+REMOTEPATH='/web/public/'
 
 lftp -f "
 set ftp:ssl-allow no
