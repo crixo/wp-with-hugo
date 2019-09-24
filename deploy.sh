@@ -17,6 +17,6 @@ lftp -f "
 set ssl:verify-certificate no
 open ftp://ftp.webprofessor.it
 user $FTP_USER $FTP_PASSWORD
-mirror --continue --reverse --delete $LOCALPATH $REMOTEPATH
+mirror --continue --reverse --delete --verbose $LOCALPATH $REMOTEPATH
 bye
 "
