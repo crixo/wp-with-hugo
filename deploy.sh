@@ -11,6 +11,7 @@ LOCALPATH='./public'
 REMOTEPATH='/web/public'
 
 lftp -f "
+set ftp:ssl-allow no
 open ftp://ftp.webprofessor.it
 user $FTP_USER $FTP_PASSWORD
 mirror --continue --reverse --delete $LOCALPATH $REMOTEPATH
