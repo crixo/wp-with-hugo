@@ -12,11 +12,11 @@ REMOTEPATH='/'
 
 # set ssl:verify-certificate no
 # set ftp:ssl-allow no
+# set ftp:ssl-allow no
+# set net:max-retries 3
+# set ftp:ssl-allow no
 
 lftp -f "
-set ftp:ssl-allow no
-set net:max-retries 3
-set ftp:ssl-allow no
 open ftp://$FTP_HOST_2
 user $FTP_USER_2 $FTP_PASSWORD_2
 mirror --continue --reverse --delete --verbose $LOCALPATH $REMOTEPATH
