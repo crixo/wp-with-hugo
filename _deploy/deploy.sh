@@ -12,7 +12,7 @@ set -e
 
 NOW=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
 
-LOCALPATH='../public/'
+LOCALPATH='./public/'
 #REMOTEPATH='site/wwwroot'
 
 ZIP_FILE="wp-with-hugo_$NOW.zip"
