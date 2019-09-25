@@ -1,4 +1,4 @@
-baseurl = "http://www.webprofessor.it"
+baseurl = "http://www.webprofessor.it/public"
 title = "Cristiano Degiorgis"
 
 theme = "hugo-coder"
