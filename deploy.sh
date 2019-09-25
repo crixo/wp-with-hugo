@@ -18,8 +18,12 @@ LOCALPATH='./public/'
 ZIP_FILE="wp-with-hugo_$NOW.zip"
 zip -r $ZIP_FILE $LOCALPATH
 
-curl -u $FTP_USER:$FTP_PASSWORD --ftp-create-dirs -T $ZIP_FILE ftp://ftp.webprofessor.it/tmp
+# not working - returning curl: (25) Failed FTP upload: 553
+# curl -u $FTP_USER:$FTP_PASSWORD --ftp-create-dirs -T $ZIP_FILE ftp://ftp.webprofessor.it/tmp
 find $ZIP_FILE -exec curl -u $FTP_USER:$FTP_PASSWORD --ftp-create-dirs -T {} ftp://ftp.webprofessor.it/tmp/{} ";"
+
+deploy_response=$(curl -X GET "http://www.webprofessor.it/unzip.php?zip_file_name=$ZIP_FILE")
+echo "deploy result:$deploy_response"
 
 # set ssl:verify-certificate no
 # set ftp:ssl-allow no
