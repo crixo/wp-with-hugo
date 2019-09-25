@@ -24,7 +24,10 @@ echo "FTP_USER:$FTP_USER"
 
 # not working - returning curl: (25) Failed FTP upload: 553
 # curl -u $FTP_USER:$FTP_PASSWORD --ftp-create-dirs -T $ZIP_FILE ftp://ftp.webprofessor.it/tmp
-find $ZIP_FILE -exec curl -u $FTP_USER:$FTP_PASSWORD --ftp-pasv --ftp-create-dirs -T {} ftp://ftp.webprofessor.it/tmp/{} ";"
+#find $ZIP_FILE -exec curl -u $FTP_USER:$FTP_PASSWORD --ftp-pasv --ftp-create-dirs -T {} ftp://ftp.webprofessor.it/tmp/{} ";"
+
+upload_response=$(curl -H "X-API-KEY: $API_KEY" -F "FILE=@$ZIP_FILE" http://www.webprofessor.it/receive.php)
+echo "upload response:$upload_response"
 
 deploy_response=$(curl -X GET "http://www.webprofessor.it/unzip.php?zip_file_name=$ZIP_FILE")
 echo "deploy result:$deploy_response"
