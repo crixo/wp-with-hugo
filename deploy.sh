@@ -5,10 +5,21 @@
 
 set -e
 
-sudo apt-get install -y lftp
+#sudo apt-get install -y lftp
+
+#sudo apt-get install zip
+
+
+NOW=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
 
 LOCALPATH='./public/'
-REMOTEPATH='site/wwwroot'
+#REMOTEPATH='site/wwwroot'
+
+ZIP_FILE="wp-with-hugo_$NOW.zip"
+zip -r $ZIP_FILE $LOCALPATH
+
+curl -u $FTP_USER:$FTP_PASSWORD --ftp-create-dirs -T $ZIP_FILE ftp://ftp.webprofessor.it/tmp
+find $ZIP_FILE -exec curl -u $FTP_USER:$FTP_PASSWORD --ftp-create-dirs -T {} ftp://ftp.webprofessor.it/tmp/{} ";"
 
 # set ssl:verify-certificate no
 # set ftp:ssl-allow no
@@ -16,11 +27,11 @@ REMOTEPATH='site/wwwroot'
 # set net:max-retries 3
 # set ftp:ssl-allow no
 
-lftp -f "
-open ftp://$FTP_HOST_2
-user $FTP_USER_2 $FTP_PASSWORD_2
-mirror --continue --reverse --delete --verbose $LOCALPATH $REMOTEPATH
-bye
-"
+# lftp -f "
+# open ftp://$FTP_HOST_2
+# user $FTP_USER_2 $FTP_PASSWORD_2
+# mirror --continue --reverse --delete --verbose $LOCALPATH $REMOTEPATH
+# bye
+# "
 #lftp -e "set ftp:ssl-allow no; set net:max-retries 3; set net:persist-retries 3; mirror -v -R ./public/ web/" -u $FTP_USER,$FTP_PASSWORD ftp://ftp.webprofessor.it
 
